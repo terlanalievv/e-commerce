@@ -103,6 +103,17 @@
         </div>
     </c:if>
 
+    <c:if test="${page == 'elan'}">
+        <div id="mainBody">
+            <div class="container">
+                <div class="row">
+                    <jsp:include page="sidebar.jsp"/>
+                    <jsp:include page="elan.jsp"/>
+                </div>
+            </div>
+        </div>
+    </c:if>
+
     <jsp:include page="footer.jsp"/>
 
     <!-- SCRIPTS -->

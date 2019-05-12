@@ -17,4 +17,9 @@ public class UserDaoImpl implements UserDao {
     public Optional<User> getUserByEmail(String email) {
         return userRepository.getUserByEmail(email);
     }
+
+    @Override
+    public Optional<User> getUserByToken(String resetToken) {
+        return Optional.empty();
+    }
 }

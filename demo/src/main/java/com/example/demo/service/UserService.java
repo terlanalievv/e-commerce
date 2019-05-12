@@ -10,4 +10,8 @@ public interface UserService {
     User authenticate(User user);*/
 
     Optional<User> getUserByEmail(String email);
+//    public String generateToken();
+//    public Optional<User> getUserByToken(String resetToken);
+//    public Optional<User> getUserByToken(String token);
+
 }
