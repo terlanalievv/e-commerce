@@ -8,6 +8,7 @@ import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.MessageDigest;
 import java.util.List;
@@ -15,13 +16,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
 
     /*@Override
     public User insert(User user) {
@@ -36,6 +35,36 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> getUserByEmail(String email) {
         return userDao.getUserByEmail(email);
+    }
+
+    @Override
+    public boolean saveUser(User user) {
+        return userDao.saveUser(user);
+    }
+
+    @Override
+    public int getUserSeqValue() {
+        return userDao.getUserSeqValue();
+    }
+
+    @Override
+    public Optional<User> getUserByToken(String token) {
+        return userDao.getUserByToken(token);
+    }
+
+    @Override
+    public boolean updateUserStatus(long userId) {
+        return userDao.updateUserStatus(userId);
+    }
+
+    @Override
+    public boolean checkUserEmail(String email) {
+        return userDao.checkUserEmail(email);
+    }
+
+    @Override
+    public boolean updateUserPassword(String email, String password) {
+        return userDao.updateUserPassword(email, password);
     }
 
 //    @Override

@@ -7,6 +7,10 @@ import java.util.Optional;
 public interface UserDao {
 
     Optional<User> getUserByEmail(String email);
-
-    Optional<User> getUserByToken(String resetToken);
+    boolean saveUser(User user);
+    int getUserSeqValue();
+    Optional<User> getUserByToken(String token);
+    boolean updateUserStatus(long userId);
+    boolean checkUserEmail(String email);
+    boolean updateUserPassword(String email, String password);
 }

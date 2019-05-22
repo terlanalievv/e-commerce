@@ -15,14 +15,16 @@ import java.util.Optional;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepositoryImpl userRepository;
-
+    private UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<User> optionalUsers = userRepository.getUserByEmail(email);
-        return optionalUsers.map(CustomUserDetails::new).get(); // java 8
-
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<User> optionalUsers = userService.getUserByEmail(username);
+        if (optionalUsers.isPresent())
+            return optionalUsers.map(CustomUserDetails::new).get(); // java 8
+        else{
+            return null;
+        }
 
         // old java version
         /*User user = optionalUsers.get();

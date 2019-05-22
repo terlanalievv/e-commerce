@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.domain.User;
+import com.example.demo.enums.Status;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -17,6 +18,13 @@ public class UserMapper implements RowMapper<User> {
         user.setEmail(resultSet.getString("email"));
         user.setPassword(resultSet.getString("password"));
         user.setPhone(resultSet.getString("phone"));
+        if(resultSet.getInt("status") == 0){
+            user.setStatus(Status.DEACTIVE);
+        } else {
+            user.setStatus(Status.ACTIVE);
+        }
+        user.setToken(resultSet.getString("token"));
+        user.setTokenExpireDate(resultSet.getTimestamp("token_exp_date").toLocalDateTime());
         return user;
     }
 }

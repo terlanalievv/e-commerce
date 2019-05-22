@@ -1,51 +1,183 @@
 package com.example.demo.domain;
 
-public class Elan {
-    private String elan_ad;
-    private String category;
-    private String price;
-    private String elaqe_nomresi;
-    //private String shekil;
+import com.example.demo.enums.AnnouncementStatus;
+import com.example.demo.enums.Currency;
+import com.example.demo.enums.Status;
+import org.springframework.web.multipart.MultipartFile;
 
-    public Elan(String elan_ad, String category, String price, String elaqe_nomresi) {
-        this.elan_ad = elan_ad;
-        this.category = category;
-        this.price = price;
-        this.elaqe_nomresi = elaqe_nomresi;
-    }
+import java.time.LocalDateTime;
+import java.util.List;
+
+public class Elan {
+
+    private int id;
+    private List<MultipartFile> files;
+    private String productName;
+    private String productInfo;
+    private Category category;
+    private String productPrice;
+    private Currency currency;
+    private City city;
+    private String prefix;
+    private String phoneNumber;
+    private String email;
+    private Status status;
+    private AnnouncementStatus announcementStatus;
+    private LocalDateTime expireDate;
+    private LocalDateTime addedDate;
+
+    private String categoryId;
+    private String cityId;
+    private String currencyLabel;
 
     public Elan() {
     }
 
-    public String getElan_ad() {
-        return elan_ad;
+    public Elan(int id) {
+        this.id = id;
     }
 
-    public void setElan_ad(String elan_ad) {
-        this.elan_ad = elan_ad;
+    public int getId() {
+        return id;
     }
 
-    public String getCategory() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<MultipartFile> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<MultipartFile> files) {
+        this.files = files;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductInfo() {
+        return productInfo;
+    }
+
+    public void setProductInfo(String productInfo) {
+        this.productInfo = productInfo;
+    }
+
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
-    public String getPrice() {
-        return price;
+    public String getProductPrice() {
+        return productPrice;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setProductPrice(String productPrice) {
+        this.productPrice = productPrice;
     }
 
-    public String getElaqe_nomresi() {
-        return elaqe_nomresi;
+    public Currency getCurrency() {
+        return currency;
     }
 
-    public void setElaqe_nomresi(String elaqe_nomresi) {
-        this.elaqe_nomresi = elaqe_nomresi;
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public AnnouncementStatus getAnnouncementStatus() {
+        return announcementStatus;
+    }
+
+    public void setAnnouncementStatus(AnnouncementStatus announcementStatus) {
+        this.announcementStatus = announcementStatus;
+    }
+
+    public LocalDateTime getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(LocalDateTime expireDate) {
+        this.expireDate = expireDate;
+    }
+
+    public LocalDateTime getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(LocalDateTime addedDate) {
+        this.addedDate = addedDate;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
+    }
+
+    public String getCurrencyLabel() {
+        return currencyLabel;
+    }
+
+    public void setCurrencyLabel(String currencyLabel) {
+        this.currencyLabel = currencyLabel;
     }
 }

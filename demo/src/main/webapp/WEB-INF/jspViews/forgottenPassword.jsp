@@ -5,7 +5,7 @@
     </ul>
     <h3> Registration</h3>
     <div class="well">
-        <form class="form-horizontal" method="post" action="forgottenPassword" >
+        <form class="form-horizontal" method="post" action="check-email" >
             <h4>Please enter your email</h4>
             <div class="control-group">
                 <label class="control-label" for="email">Email <sup>*</sup></label>

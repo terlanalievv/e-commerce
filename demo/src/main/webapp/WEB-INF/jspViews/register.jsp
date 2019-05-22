@@ -1,8 +1,6 @@
-<style>
-    .error {
-        color:red;
-    }
-</style>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+
 <div class="span9">
     <ul class="breadcrumb">
         <li><a href="index">Home</a> <span class="divider">/</span></li>
@@ -11,40 +9,37 @@
     <h3> Registration</h3>
     <div class="well" >
 
-        <form:form id="register-form" action="/register" method="post" modelAttribute="registrationForm">            <h4>Your personal information</h4>
+        <%--@elvariable id="user" type="java"--%>
+        <form:form id="register-form" action="/register/user-register" method="post" modelAttribute="user">
+            <h4>Your personal information</h4>
             <div class="control-group">
                 <label class="control-label">First name <sup>*</sup></label>
                 <div class="controls">
-                    <form:input path="firstName" cssClass="form-control" placeholder="First Name"/>
-                    <form:errors path="firstName" cssClass="error"/>
+                    <form:input path="name" cssClass="form-control" placeholder="First Name"/>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">Last name <sup>*</sup></label>
                 <div class="controls">
-                    <form:input path="lastName" cssClass="form-control" placeholder="Last Name"/>
-                    <form:errors path="lastName" cssClass="error"/>
+                    <form:input path="surname" cssClass="form-control" placeholder="Last Name"/>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">Email <sup>*</sup></label>
                 <div class="controls">
                     <form:input path="email" cssClass="form-control" autocomplete="false" placeholder="Email"/>
-                    <form:errors path="email" cssClass="error"/>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">Password <sup>*</sup></label>
                 <div class="controls">
                     <form:password path="password" cssClass="form-control" placeholder="Password"/>
-                    <form:errors path="password" cssClass="error"/>>
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label">Password Confirmation<sup>*</sup></label>
+                <label class="control-label">Phone Number<sup>*</sup></label>
                 <div class="controls">
-                    <form:password path="passconfirmation" cssClass="form-control" placeholder="Confirm Password"/>
-                    <form:errors path="passconfirmation" cssClass="error"/>
+                    <form:input path="phone" cssClass="form-control" placeholder="Phone number"/>
                 </div>
             </div>
 

@@ -19,7 +19,32 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Optional<User> getUserByToken(String resetToken) {
-        return Optional.empty();
+    public Optional<User> getUserByToken(String token) {
+        return userRepository.getUserByToken(token);
+    }
+
+    @Override
+    public boolean updateUserStatus(long userId) {
+        return userRepository.updateUserStatus(userId);
+    }
+
+    @Override
+    public boolean checkUserEmail(String email) {
+        return userRepository.checkUserEmail(email);
+    }
+
+    @Override
+    public boolean updateUserPassword(String email, String password) {
+        return userRepository.updateUserPassword(email, password);
+    }
+
+    @Override
+    public boolean saveUser(User user) {
+        return userRepository.insertUser(user);
+    }
+
+    @Override
+    public int getUserSeqValue() {
+        return userRepository.getUserSeqValue();
     }
 }

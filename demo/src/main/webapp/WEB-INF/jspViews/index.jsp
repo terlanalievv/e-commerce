@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -109,6 +110,28 @@
                 <div class="row">
                     <jsp:include page="sidebar.jsp"/>
                     <jsp:include page="elan.jsp"/>
+                </div>
+            </div>
+        </div>
+    </c:if>
+
+    <c:if test="${page == 'notifications'}">
+        <div id="mainBody">
+            <div class="container">
+                <div class="row">
+                    <jsp:include page="sidebar.jsp"/>
+                    <jsp:include page="notifications.jsp"/>
+                </div>
+            </div>
+        </div>
+    </c:if>
+
+    <c:if test="${page == 'passwordReset'}">
+        <div id="mainBody">
+            <div class="container">
+                <div class="row">
+                    <jsp:include page="sidebar.jsp"/>
+                    <jsp:include page="passwordReset.jsp"/>
                 </div>
             </div>
         </div>

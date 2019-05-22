@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+import com.example.demo.enums.Status;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -58,7 +59,11 @@ public class CustomUserDetails extends User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        if(super.getStatus().equals(Status.ACTIVE)){
+            return true;
+        } else{
+            return false;
+        }
     }
 
 }

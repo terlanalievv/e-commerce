@@ -28,8 +28,11 @@
                     <li class=""><a href="normal">Catdirilma</a></li>
                     <li class=""><a href="contact">Elaqe</a></li>
                     <li class="">
+                        <a href="/elan" role="button" data-toggle="modal" style="padding-right:0"><span
+                                class="btn btn-large btn-success">Elan Yerlesdir</span></a>
+                    <li class="">
                         <a href="/login" role="button" data-toggle="modal" style="padding-right:0"><span
-                                class="btn btn-large btn-success">Login</span></a>
+                                class="btn btn-large btn-primary">Login</span></a>
                         <%--<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login"
                              aria-hidden="false">
                             <div class="modal-header">

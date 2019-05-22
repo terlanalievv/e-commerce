@@ -24,9 +24,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.authorizeRequests().antMatchers("/**").permitAll();
-        http.authorizeRequests().and().formLogin().loginPage("/login").defaultSuccessUrl("/index").failureUrl("/login");
-        //http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/admin/hjthjhyj");
+        http.authorizeRequests().antMatchers("/elan/**").access("hasRole('USER')");
+        http.authorizeRequests().and().formLogin().loginPage("/login").defaultSuccessUrl("/products").failureUrl("/login");
         http.authorizeRequests().and().logout().logoutUrl("/logout").logoutSuccessUrl("/login");
     }
 
