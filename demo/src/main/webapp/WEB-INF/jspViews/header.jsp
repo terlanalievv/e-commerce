@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="header">
     <div class="container">
         <!-- Navbar ================================================== -->
@@ -9,62 +10,52 @@
             </a>
             <div class="navbar-inner">
                 <!-- <a class="brand" href="index"><img src="themes/images/logo.png" alt="Bootsshop"/></a> -->
-                <form class="form-inline navbar-search" method="post" action="products">
-                    <input id="srchFld" class="srchTxt" type="text"/>
-                    <select class="srchTxt">
+                <form class="form-inline navbar-search" method="get" action="search">
+                    <input name="name" value="${param.name}" type="text"/>
+                    <%--<select class="srchTxt">
                         <option>BUTUN</option>
                         <option>GEYIMLER</option>
                         <option>ERZAQ & ICKILER</option>
                         <option>SAGLAMLIQ & GOZELLIK</option>
                         <option>IDMAN & ISTIRAHET</option>
                         <option>KITABLAR & EYLENCELER</option>
-                    </select>
+                    </select>--%>
                     <a href="products">
                         <button type="submit" id="submitButton" class="btn btn-primary"> Go</button>
                     </a>
                 </form>
                 <ul id="topMenu" class="nav pull-right">
-                    <li class=""><a href="special_offer">Xususi Teklifler</a></li>
-                    <li class=""><a href="normal">Catdirilma</a></li>
-                    <li class=""><a href="contact">Elaqe</a></li>
-                    <li class="">
-                        <a href="/elan" role="button" data-toggle="modal" style="padding-right:0"><span
-                                class="btn btn-large btn-success">Elan Yerlesdir</span></a>
-                    <li class="">
-                        <a href="/login" role="button" data-toggle="modal" style="padding-right:0"><span
-                                class="btn btn-large btn-primary">Login</span></a>
-                        <%--<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login"
-                             aria-hidden="false">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3>Login Block</h3>
-                            </div>
-
-                            <div class="modal-body">
-
-                                <form action="login" method="post" class="form-horizontal loginFrm">
-                                    <div class="control-group">
-                                        <input type="text" name="loginEmail" id="inputEmail" placeholder="Email">
-                                    </div>
-                                    <div class="control-group">
-                                        <input type="password" name="loginPassword" id="inputPassword"
-                                               placeholder="Password">
-                                    </div>
-                                    <div class="control-group">
-                                        <label class="checkbox">
-                                            <input type="checkbox"> Remember me
-                                        </label>
-                                    </div>
-                                    <a href="register" style="color: blue">Hesabiniz yoxdursa, qeydiyyatdan
-                                        kecin!</a><br>
-                                    <a href="forgottenPassword" style="color: blue">Shifreni unutmusunuz?</a><br/>
-                                    <input type="submit" value="Sign in" class="btn btn-success">
-                                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                                </form>
-
-                            </div>
-                        </div> --%>
+                    <li style="padding-right: 250px;">
+                        <a href="/" role="button" data-toggle="modal" style="padding-right:0">
+                            <span class="btn btn-large btn-light">Esas sehife</span>
+                        </a>
                     </li>
+                    <c:if test="${sessionScope.user != null}">
+                        <li>
+                            <a href="/myproducts/${sessionScope.user.userId}" role="button" data-toggle="modal" style="padding-right:0">
+                                <span class="btn btn-large btn-info">Menim elanlarim</span>
+                            </a>
+                        </li>
+                    </c:if>
+                    <li>
+                        <a href="/elan" role="button" data-toggle="modal" style="padding-right:0">
+                            <span class="btn btn-large btn-success">Elan Yerlesdir</span>
+                        </a>
+                    </li>
+                    <c:if test="${sessionScope.user == null}">
+                        <li class="">
+                            <a href="/login" role="button" data-toggle="modal" style="padding-right:0">
+                                <span class="btn btn-large btn-primary">Login</span>
+                            </a>
+                        </li>
+                    </c:if>
+                    <c:if test="${sessionScope.user != null}">
+                        <li>
+                            <a href="/logout" role="button" data-toggle="modal" style="padding-right:0">
+                                <span class="btn btn-large btn-primary">Logout</span>
+                            </a>
+                        </li>
+                    </c:if>
                 </ul>
             </div>
         </div>

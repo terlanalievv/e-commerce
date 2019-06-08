@@ -1,0 +1,15 @@
+#product-detail-table tr td{
+    padding: 5px 50px 5px 0;
+}
+.admin-sidebar-menu{
+    font-size: 18px;
+}
+
+#elanTable .example-tr{
+    cursor: pointer;
+}
+
+#elanTable .example-tr:hover{
+    background-color: #a6e1ec;
+}
+

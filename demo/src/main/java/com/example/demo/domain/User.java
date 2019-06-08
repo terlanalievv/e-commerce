@@ -3,6 +3,7 @@ package com.example.demo.domain;
 import com.example.demo.enums.Status;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 public class User {
@@ -119,6 +120,14 @@ public class User {
 
     public void setRegistrationDate(LocalDateTime registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public String getFormattedDate(LocalDateTime localDateTime){
+        if(localDateTime != null) {
+            return localDateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"));
+        } else {
+            return "00.00.0000 00:00:00";
+        }
     }
 }
 

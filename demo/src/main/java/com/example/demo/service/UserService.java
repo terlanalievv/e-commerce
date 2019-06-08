@@ -3,6 +3,7 @@ package com.example.demo.service;
 
 import com.example.demo.domain.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
@@ -16,8 +17,7 @@ public interface UserService {
     boolean updateUserStatus(long userId);
     boolean checkUserEmail(String email);
     boolean updateUserPassword(String email, String password);
-//    public String generateToken();
-//    public Optional<User> getUserByToken(String resetToken);
-//    public Optional<User> getUserByToken(String token);
+    public List<User> getAllUsers();
+    public List<User> allUsers();
 
 }

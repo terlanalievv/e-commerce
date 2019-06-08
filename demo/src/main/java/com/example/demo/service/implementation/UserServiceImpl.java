@@ -67,6 +67,16 @@ public class UserServiceImpl implements UserService {
         return userDao.updateUserPassword(email, password);
     }
 
+    @Override
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
+    }
+
+    @Override
+    public List<User> allUsers() {
+        return userDao.allUsers();
+    }
+
 //    @Override
 //    public String generateToken() {
 //            UUID uuid = UUID.randomUUID();

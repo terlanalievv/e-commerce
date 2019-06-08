@@ -25,6 +25,7 @@
     <link rel="apple-touch-icon-precomposed" href="/resources/homestate/front/bootstrap-shop/themes/images/ico/apple-touch-icon-57-precomposed.png">
 
     <link href="dfweter.css" rel="stylesheet" type="text/css">
+    <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <jsp:include page="header.jsp"/>

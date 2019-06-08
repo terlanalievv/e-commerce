@@ -5,6 +5,7 @@ import com.example.demo.repository.UserRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -36,6 +37,16 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean updateUserPassword(String email, String password) {
         return userRepository.updateUserPassword(email, password);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.getAllUsers();
+    }
+
+    @Override
+    public List<User> allUsers() {
+        return userRepository.allUsers();
     }
 
     @Override

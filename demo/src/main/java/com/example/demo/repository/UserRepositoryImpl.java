@@ -2,14 +2,20 @@ package com.example.demo.repository;
 
 import com.example.demo.domain.Role;
 import com.example.demo.domain.User;
+import com.example.demo.enums.Status;
+import com.example.demo.mappers.RoleMapper;
+import com.example.demo.mappers.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
+
+import static com.example.demo.repository.SqlQuery.GET_ALL_USERS;
 
 @Repository
 public class UserRepositoryImpl {
@@ -107,18 +113,46 @@ public class UserRepositoryImpl {
         }
     }
 
-    /*public User insert(User user){
-        Object[] data = {user.getName(), user.getSurname(),user.getEmail(),user.getPassword()};
-        int count = jdbcTemplate.update(SqlQuery.INSERT_USER, data);
-        System.out.println("insert count = " + count);
-        return user;
+    public List<User> getAllUsers(){
+        List<User> userList = jdbcTemplate.query(GET_ALL_USERS, new UserMapper());
+        return userList;
     }
-    public User authenticate (User user){
-        Object[] data = {user.getEmail(),user.getPassword()};
-          jdbcTemplate.update(SqlQuery.AUTHENTICATE_USER,data);
-//        String sql=SqlQuery.AUTHENTICATE_USER;
-//        List<Map<String, Object>> count = jdbcTemplate.queryForList(sql,data);
-        //System.out.println("count = " + count);
-        return user;
-    }*/
+
+    public List<User> allUsers(){
+
+        List<User> userList = new ArrayList<>();
+        try {
+            userList = jdbcTemplate.query(SqlQuery.GET_ALL_USERS, new ResultSetExtractor<List<User>>() {
+
+                @Override
+                public List<User> extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+                    List<User> users = new ArrayList<>();
+                    while (rs.next()){
+                        User user = new User();
+                        user.setUserId(rs.getInt("user_id"));
+                        user.setName(rs.getString("name"));
+                        user.setSurname(rs.getString("surname"));
+                        user.setEmail(rs.getString("email"));
+                        user.setPassword(rs.getString("password"));
+                        user.setPhone(rs.getString("phone"));
+                        if(rs.getInt("status") == 0){
+                            user.setStatus(Status.DEACTIVE);
+                        } else {
+                            user.setStatus(Status.ACTIVE);
+                        }
+                        user.setRegistrationDate(rs.getTimestamp("registration_date").toLocalDateTime());
+                        users.add(user);
+                    }
+                    return users;
+                }
+            });
+            return userList;
+
+        } catch (Exception e){
+            return userList;
+        }
+    }
+
+
 }

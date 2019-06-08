@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" >Kateqoriya: <sup>*</sup></label>
+                <label class="control-label">Kateqoriya: <sup>*</sup></label>
                 <div class="controls">
                     <form:select path="categoryId" id="productCategory">
                         <form:option value="" label="-"/>

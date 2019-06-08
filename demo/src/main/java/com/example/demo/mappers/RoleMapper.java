@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+package com.example.demo.mappers;
 
 import com.example.demo.domain.Role;
 import org.springframework.jdbc.core.RowMapper;

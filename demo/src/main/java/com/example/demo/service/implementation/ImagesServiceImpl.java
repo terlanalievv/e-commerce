@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class ImagesServiceImpl implements ImagesService {
@@ -17,5 +19,10 @@ public class ImagesServiceImpl implements ImagesService {
     @Override
     public boolean saveImages(Images images) {
         return imagesDao.saveImages(images);
+    }
+
+    @Override
+    public List<Images> getAllImages(int elanId) {
+        return imagesDao.getAllImages(elanId);
     }
 }

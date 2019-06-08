@@ -6,6 +6,7 @@ import com.example.demo.enums.Status;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Elan {
@@ -25,10 +26,12 @@ public class Elan {
     private AnnouncementStatus announcementStatus;
     private LocalDateTime expireDate;
     private LocalDateTime addedDate;
+    private User user;
 
     private String categoryId;
     private String cityId;
     private String currencyLabel;
+    private String image;
 
     public Elan() {
     }
@@ -179,5 +182,38 @@ public class Elan {
 
     public void setCurrencyLabel(String currencyLabel) {
         this.currencyLabel = currencyLabel;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getFormattedDate(LocalDateTime localDateTime){
+        if(localDateTime != null) {
+            return localDateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"));
+        } else {
+            return "00.00.0000 00:00:00";
+        }
+    }
+
+    public boolean compareExpireDate(LocalDateTime localDateTime){
+        LocalDateTime now = LocalDateTime.now();
+        if(now.isAfter(localDateTime)){
+            return true;
+        } else {
+            return false;
+        }
     }
 }

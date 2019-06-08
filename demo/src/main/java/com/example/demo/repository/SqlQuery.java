@@ -54,8 +54,53 @@ public class SqlQuery {
     public static final String GET_CITIES = "select id, name from public.cities order by name asc";
 
     public static final String SAVE_ELAN = "insert into public.elan(id, product_name, product_info, category_id, " +
-            "product_price, currency, city_id, phone, email, status, announcement_status, expire_date, added_date) " +
-            "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "product_price, currency, city_id, phone, email, status, announcement_status, expire_date, added_date, user_id) " +
+            "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    public static final String UPDATE_ELAN_ANNOUNCEMENT_STATUS = "update public.elan set announcement_status = ? where id = ?";
+
+    public static final String UPDATE_ELAN_STATUS = "update public.elan set status = ? where id = ?";
 
     public static final String SAVE_IMAGES = "insert into public.images(id, name, elan_id) values(nextval('images_seq'), ?, ?)";
+
+    public static final String GET_ALL_ELANS = "select distinct on(e.id) e.id, e.product_name, " +
+            "e.product_price, e.currency, " +
+            "i.name as image_name from public.elan e inner join public.images i " +
+            "on e.id = i.elan_id where status = 1 and announcement_status = 1  and expire_date >= current_timestamp::timestamp";
+
+    public static final String GET_ELAN = "select distinct on(e.id) e.id, e.product_name, e.product_info, ca.name as category_name, " +
+            "ci.name as city_name, e.phone, e.email, e.added_date, e.product_price, e.currency, im.name as image_name " +
+            "from public.elan e " +
+            "inner join public.category ca on e.category_id = ca.id " +
+            "inner join public.cities ci on e.city_id = ci.id " +
+            "inner join public.images im on e.id = im.elan_id where e.status = 1 and e.announcement_status = 1 and e.id = ?";
+
+    public static final String GET_ALL_IMAGES = "select id, name from public.images where elan_id = ?";
+
+    public static final String ALL_ELANS = "select e.id, e.product_name, e.status, e.announcement_status, e.added_date, e.expire_date, u.user_id, u.name, u.surname " +
+            "from public.elan e inner join public.user u on e.user_id = u.user_id order by e.id desc";
+
+    // admin elana click edende elanin butun melumatlarini getirsin
+    public static final String GET_ELAN_FOR_ADMIN = "select e.id, e.product_name, e.product_info, ca.id as cat_id, ca.name as category_name, ci.id as city_id, ci.name as city_name, e.phone, e.email," +
+            "e.status, e.announcement_status, e.expire_date, e.added_date, e.product_price, e.currency, u.user_id, u.name, u.surname, u.email " +
+            "from public.elan e " +
+            "inner join public.category ca on e.category_id = ca.id " +
+            "inner join public.cities ci on e.city_id = ci.id " +
+            "inner join public.user u on e.user_id = u.user_id  " +
+            "where e.id = ?";
+
+    public static final String GET_ALL_USERS = "SELECT user_id, name, surname, email, password, phone, status, registration_date " +
+            "FROM public.user";
+
+    public static final String GET_ELAN_BY_ID = "SELECT id, product_name, product_info, category_id, city_id, phone, email, status, announcement_status, expire_date, added_date, product_price, currency, user_id " +
+            "FROM public.elan where user_id = ?";
+
+    public static final String GET_MY_PRODUCTS = "select distinct on(e.id) e.id, e.product_name, e.product_price, " +
+            "e.currency, i.name as image_name from public.elan e inner join public.images i on e.id = i.elan_id where " +
+            "status = 1 and announcement_status = 1  and expire_date >= current_timestamp::timestamp and e.user_id = ?";
+
+    public static final String GET_SEARCH_PRODUCTS = "select distinct on(e.id) e.id, e.product_name, e.product_price, " +
+            "e.currency, i.name as image_name from public.elan e inner join public.images i on e.id = i.elan_id where " +
+            "status = 1 and announcement_status = 1  and expire_date >= current_timestamp::timestamp and lower(e.product_name) like lower('%?%')";
+
 }
