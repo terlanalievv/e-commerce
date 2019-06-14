@@ -390,7 +390,11 @@ public class ElanRepositoryImpl {
 
     public List<Elan> searchProducts(String name){
 
-        String sql = "select distinct on(e.id) e.id, e.product_name, e.product_price, e.currency, i.name as image_name from public.elan e inner join public.images i on e.id = i.elan_id where status = 1 and announcement_status = 1  and expire_date >= current_timestamp::timestamp and lower(e.product_name) like lower('%"+ name + "%')";
+        String sql = "select distinct on(e.id) e.id, e.product_name, e.product_price, e.currency, " +
+                "i.name as image_name from public.elan e inner join public.images i " +
+                "on e.id = i.elan_id where status = 1 and announcement_status = 1  " +
+                "and expire_date >= current_timestamp::timestamp and " +
+                "lower(e.product_name) like lower('%"+ name + "%')";
         List<Elan> elanList = new ArrayList<>();
         try {
             elanList = jdbcTemplate.query(sql, new ResultSetExtractor<List<Elan>>() {

@@ -16,7 +16,7 @@
         </thead>
         <tbody>
         <c:forEach items="${users}" var="user">
-            <tr onclick="showUserDetail(${user.userId})" class="example-tr">
+            <tr onclick="showUserDetail(${user.email})" class="example-tr">
                 <td>${user.userId}</td>
                 <td>${user.name} ${user.surname}</td>
                 <td>${user.email}</td>

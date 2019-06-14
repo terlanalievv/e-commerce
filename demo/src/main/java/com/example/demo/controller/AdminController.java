@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -97,8 +98,17 @@ public class AdminController {
         return "admin/admin";
     }
 
-    @GetMapping(value = "/user/{id}")
-    public String userDetail(Model model, @PathVariable(value = "id") int id){
+    @GetMapping(value = "/user/{email}")
+    public String userDetail(Model model, @PathVariable(value = "email") String email){
+
+       Optional<User> optionalUser = userService.getUserByEmail(email);
+       if (optionalUser.isPresent()){
+           User user = optionalUser.get();
+           model.addAttribute("user",user);
+           model.addAttribute("userResult","Found");
+       }else {
+           model.addAttribute("userResult","NotFound");
+       }
 
         model.addAttribute("pageAdmin", "userDetail");
         return "admin/admin";
