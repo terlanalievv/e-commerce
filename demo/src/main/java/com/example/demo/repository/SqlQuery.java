@@ -66,7 +66,7 @@ public class SqlQuery {
     public static final String GET_ALL_ELANS = "select distinct on(e.id) e.id, e.product_name, " +
             "e.product_price, e.currency, " +
             "i.name as image_name from public.elan e inner join public.images i " +
-            "on e.id = i.elan_id where status = 1 and announcement_status = 1  and expire_date >= current_timestamp::timestamp";
+            "on e.id = i.elan_id where status = 1 and announcement_status = 1;
 
     public static final String GET_ELAN = "select distinct on(e.id) e.id, e.product_name, e.product_info, ca.name as category_name, " +
             "ci.name as city_name, e.phone, e.email, e.added_date, e.product_price, e.currency, im.name as image_name " +
